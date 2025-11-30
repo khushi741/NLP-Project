@@ -1,95 +1,79 @@
-Sentiment Analysis Using Deep Learning (Without TF-IDF)
-Project Description
+# Sentiment Analysis Using Deep Learning (Without TF-IDF)
 
-This project performs sentiment analysis on Twitter data using a deep learning approach with LSTM networks, without using TF-IDF or traditional bag-of-words features. It classifies tweets into Positive, Neutral, and Negative sentiments.
+## Project Description
+This project performs **sentiment analysis on Twitter data** using a deep learning approach with **LSTM networks**, without using TF-IDF or traditional bag-of-words features.  
+It classifies tweets into **Positive, Neutral, and Negative** sentiments.
 
-The project focuses on text preprocessing, tokenization, word embedding, and sequential modeling using deep learning.
+Key objectives include:  
+- Text preprocessing (stopword removal, punctuation cleaning, stemming)  
+- Tokenization and sequence padding  
+- Building an LSTM-based deep learning model  
+- Visualizing sentiment distribution and common words  
+- Predicting sentiment categories of tweets  
 
-Dataset
+---
 
-Source: Twitter dataset containing tweets and sentiment labels
+## Dataset
+- **Source:** Twitter dataset  
+- **Columns:**  
+  - `clean_text` – Preprocessed tweet text  
+  - `category` – Sentiment label: `1 = Positive`, `0 = Neutral`, `-1 = Negative`  
+- **Size:** 186,517 tweets  
 
-Columns:
+---
 
-clean_text – Preprocessed tweet text
+## Technologies Used
+- **Python** – Programming language  
+- **Pandas & NumPy** – Data handling  
+- **NLTK** – Stopword removal and stemming  
+- **Matplotlib & Seaborn** – Visualization  
+- **WordCloud** – Visual representation of frequent words  
+- **TensorFlow/Keras** – LSTM-based deep learning model  
+- **Google Colab** – Execution environment  
 
-category – Sentiment label: 1 = Positive, 0 = Neutral, -1 = Negative
+---
 
-Size: 186,517 tweets
+## How It Works
 
-Key Steps
-1. Data Preprocessing
+### 1. Data Preprocessing
+- Convert all text to lowercase  
+- Remove stopwords and punctuations  
+- Apply Porter Stemming to reduce words to root forms  
+- Map negative sentiment `-1` to `2` for classification  
 
-Converted all text to lowercase
+### 2. Exploratory Data Analysis (EDA)
+- Visualize proportion of positive, neutral, and negative tweets using **pie charts**  
+- Generate **word clouds** for each sentiment category  
 
-Removed stopwords and punctuations
+### 3. Tokenization and Padding
+- Tokenize tweets using Keras Tokenizer  
+- Convert tokens to sequences and pad them to a fixed length  
 
-Applied Porter Stemming to reduce words to their root forms
+### 4. LSTM-Based Model
+- **Architecture:**  
+  - Input Layer → Embedding Layer → LSTM Layer (64 units) → Dense Layer (64 units) → Dropout (0.2) → Dense Output Layer (3 units, Softmax)  
+- **Optimizer:** Adam  
+- **Loss Function:** Sparse Categorical Crossentropy  
+- **Validation Split:** 20%  
+- **Training Result:** 86.34% accuracy on test data  
 
-Re-mapped negative sentiment label -1 to 2 for classification
+---
 
-2. Exploratory Data Analysis (EDA)
+## Example Visualizations
+- **Pie Chart:** Distribution of sentiment categories  
+- **Word Clouds:** Most frequent words in Positive, Neutral, and Negative tweets  
 
-Visualized proportion of positive, neutral, and negative tweets using pie charts
+---
 
-Created word clouds for each sentiment category to understand common words
-
-3. Tokenization and Padding
-
-Tokenized the tweet text using Keras Tokenizer
-
-Converted tokens into sequences and applied padding to ensure equal input length
-
-4. Deep Learning Model
-
-Used LSTM-based neural network for sequential modeling:
-
-Input Layer → Embedding → LSTM → Dense → Dropout → Output Layer (Softmax)
-
-Model trained to classify three sentiment categories
-
-5. Model Training
-
-Optimizer: Adam
-
-Loss Function: Sparse Categorical Crossentropy
-
-Validation split: 20%
-
-Training achieved 86.34% accuracy on test data
-
-Technologies Used
-
-Python – Programming language
-
-Pandas, NumPy – Data handling
-
-NLTK – Stopword removal and stemming
-
-Matplotlib & Seaborn – Visualization
-
-WordCloud – Visual representation of frequent words
-
-TensorFlow/Keras – LSTM-based deep learning model
-
-Google Colab – Execution environment
-
-Model Architecture
-Sequential LSTM Model:
-Input Layer
-→ Embedding Layer (trainable)
-→ LSTM Layer (64 units, tanh activation)
-→ Dense Layer (64 units, tanh activation)
-→ Dropout Layer (0.2)
-→ Dense Output Layer (3 units, softmax)
-
-
-Total Parameters: ~17.78 million
-
-Handles sequential input without TF-IDF or vectorization
+## How to Run
+1. Clone the repository  
+2. Upload `Twitter_Data.csv` to your Colab or local environment  
+3. Install required packages:
+```bash
+pip install pandas numpy nltk tensorflow matplotlib seaborn wordcloud
+Run the notebook from top to bottom
 
 Results
-
 Training Accuracy: 88.89%
 
 Validation Accuracy: 86.34%
@@ -98,25 +82,7 @@ Test Accuracy: 86.34%
 
 The model effectively classifies tweets into Positive, Neutral, and Negative categories
 
-Visualizations
-
-Pie Chart: Distribution of sentiment categories
-
-Word Clouds: Common words in Positive, Neutral, and Negative tweets
-
-How to Run
-
-Clone the repository
-
-Upload Twitter_Data.csv in your Colab or local environment
-
-Install required packages:
-
-pip install pandas numpy nltk tensorflow matplotlib seaborn wordcloud
-
-
-Run the notebook from top to bottom
-
 Conclusion
+This project demonstrates how LSTM-based deep learning models can perform sentiment analysis directly on text without TF-IDF or manual feature engineering.
+The model achieved 86% test accuracy, making it suitable for social media sentiment classification tasks.
 
-This project demonstrates how LSTM-based deep learning models can perform sentiment analysis directly on text without using TF-IDF or other feature engineering techniques. The model achieved 86% test accuracy, making it suitable for social media sentiment classification tasks.
